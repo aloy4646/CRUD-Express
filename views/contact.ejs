@@ -1,0 +1,29 @@
+<h2>This is contact page</h2>
+
+<form method="POST" action="/contact/form">
+    <button type="submit">Add Contact</button>
+</form>
+
+<% if (contacts.length < 1) { %>
+    <p>Contact data is Empty</p>
+<% } else { %>
+    <% contacts.forEach(contact => { %>
+        <div name="contact">
+            <ul>
+                <li>Nama: <%= contact.name %></li>
+                <li>Mobile: <%= contact.mobile %></li>
+            </ul>
+            <form method="GET" action="/contact/<%= contact.name %>">
+                <button type="submit">Detail</button>
+            </form>
+
+            <form method="POST" action="/contact/form?oldName=<%= contact.name %>">
+                <button type="submit">Edit</button>
+            </form>
+
+            <form method="POST" action="/contact/<%= contact.name %>?_method=DELETE">
+                <button type="submit">Delete</button>
+            </form>            
+        </div>
+    <% }) %>
+<% } %>

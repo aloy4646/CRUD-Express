@@ -1,0 +1,62 @@
+<script>
+    if ("<%= pesanError %>" !== "") {
+        window.onload = function() {
+            alert("<%= pesanError %>");
+        };
+    }
+</script>
+
+
+<!-- pengecekan apakah ada contact -->
+<!-- jika ada maka method dari request tersebut adalah Update -->
+<!-- Form akan terisi oleh nilai lama dari contact jika method dari request adalah Update -->
+<% if (request === "PUT") { %>
+    <form action="/contact?_method=PUT" method="POST">
+<% } else { %>
+    <form action="/contact" method="POST">
+<% } %>
+
+    
+    <% if (request === "PUT") { %>
+        <label for="oldName">Old Name:</label><br>
+        <input type="text" id="oldName" name="oldName" value="<%= oldName %>" readonly><br><br>
+    <% } else { %>
+        <label for="oldName" hidden>Name:</label><br>
+        <input type="text" id="oldName" name="oldName" value="<%= oldName %>" hidden><br><br>
+    <% } %>
+
+    <% if (request === "PUT") { %>
+        <% if (contact.name == null) { %>
+            <label for="name">New Name:</label><br>
+            <input type="text" id="name" name="name"><br><br>
+        <% } else {%>
+            <label for="name">New Name:</label><br>
+            <input type="text" id="name" name="name" value="<%= contact.name %>"><br><br>
+        <% } %>
+    <% } else { %>
+        <% if (contact && contact.name) { %>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" value="<%= contact.name %>"><br><br>
+        <% } else {%>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+        <% } %>
+    <% } %>
+    
+    <label for="email">Email:</label><br>
+    <% if (contact != null && contact.email) { %>
+        <input type="email" id="email" name="email" value="<%= contact.email %>"><br><br>
+    <% } else { %>
+        <input type="email" id="email" name="email"><br><br>
+    <% } %>
+    
+    <label for="mobile">Mobile:</label><br>
+    <% if (contact != null) { %>
+        <input type="tel" id="mobile" name="mobile" value="<%= contact.mobile %>" required><br><br>
+    <% } else { %>
+        <input type="tel" id="mobile" name="mobile" required><br><br>
+    <% } %>
+    
+    <button type="submit">Submit</button>
+</form>
+

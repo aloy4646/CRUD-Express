@@ -9,6 +9,7 @@
 </script>
 
 
+<h2>Form</h2>
 <!-- pengecekan apakah ada contact -->
 <!-- jika ada maka method dari request tersebut adalah Update -->
 <!-- Form akan terisi oleh nilai lama dari contact jika method dari request adalah Update -->
@@ -21,28 +22,28 @@
     <% if (request === "PUT") { %>
         <!-- saat method dari request adalah PUT maka form nama terisi dengan nama lama -->
         <!-- saat terjadi error saat pengisian form, nama yang dicantumkan saat error akan kembali dimunculkan -->
-        <label for="name">Name:</label><br>
+        <label for="name">Name</label><br>
         <input type="text" id="name" name="name" value="<%= contact.name %>"><br><br>
     <% } else { %>
         <% if (contact && contact.name) { %>
             <!-- kondisi ini berjalan saat request POST terdapat error dan form kembali dimunculkan -->
-            <label for="name">Name:</label><br>
+            <label for="name">Name</label><br>
             <input type="text" id="name" name="name" value="<%= contact.name %>"><br><br>
         <% } else {%>
             <!-- kondisi ini berjalan saat request POST pertama dilakukan -->
-            <label for="name">Name:</label><br>
+            <label for="name">Name</label><br>
             <input type="text" id="name" name="name" required><br><br>
         <% } %>
     <% } %>
     
-    <label for="email">Email:</label><br>
+    <label for="email">Email</label><br>
     <% if (contact != null && contact.email) { %>
         <input type="email" id="email" name="email" value="<%= contact.email %>"><br><br>
     <% } else { %>
         <input type="email" id="email" name="email"><br><br>
     <% } %>
     
-    <label for="mobile">Mobile:</label><br>
+    <label for="mobile">Mobile</label><br>
     <% if (contact != null) { %>
         <input type="tel" id="mobile" name="mobile" value="<%= contact.mobile %>" required><br><br>
     <% } else { %>

@@ -18,28 +18,11 @@
     <form action="/contact" method="POST">
 <% } %>
 
-    
     <% if (request === "PUT") { %>
-        <!-- oldName akan ditampilkan namun tidak dapat diedit -->
-        <label for="oldName">Old Name:</label><br>
-        <input type="text" id="oldName" name="oldName" value="<%= oldName %>" readonly><br><br>
-    <% } else { %>
-        <!-- oldName dihidden agar tetap dapat dipanggil dengan req.body nantinya -->
-        <label for="oldName" hidden>Name:</label><br>
-        <input type="text" id="oldName" name="oldName" value="<%= oldName %>" hidden><br><br>
-    <% } %>
-
-    <% if (request === "PUT") { %>
-        <% if (contact.name == null) { %>
-            <!-- jika request adalah Update dan contact.name sengaja dikosongkan maka input new name akan kosong -->
-            <label for="name">New Name:</label><br>
-            <input type="text" id="name" name="name"><br><br>
-        <% } else {%>
-            <!-- kondisi ini berjalan saat request PUT terdapat error dan form kembali dimunculkan namun dengan data sebelumnya -->
-            <!-- data sebelumnya akan tetap dimunculkan meskipun error agar user dapat mengeditnya kembali -->
-            <label for="name">New Name:</label><br>
-            <input type="text" id="name" name="name" value="<%= contact.name %>"><br><br>
-        <% } %>
+        <!-- saat method dari request adalah PUT maka form nama terisi dengan nama lama -->
+        <!-- saat terjadi error saat pengisian form, nama yang dicantumkan saat error akan kembali dimunculkan -->
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" value="<%= contact.name %>"><br><br>
     <% } else { %>
         <% if (contact && contact.name) { %>
             <!-- kondisi ini berjalan saat request POST terdapat error dan form kembali dimunculkan -->
@@ -67,5 +50,12 @@
     <% } %>
     
     <button type="submit">Submit</button>
+
+    <!-- menambahkan input oldName saat PUT namun di-hidden agar tidak dapat dirubah oleh user -->
+    <!-- oldName akan dipakai nantinya untuk proses perubahan data sebagai key untuk pencarian -->
+    <% if (request === "PUT") { %>
+        <label for="oldName" hidden>Old Name:</label><br>
+        <input type="text" id="oldName" name="oldName" value="<%= oldName %>" hidden><br><br>
+    <% } %>
 </form>
 

@@ -59,7 +59,6 @@ app.post('/contact/form', (req, res) => {
     //contact.name diisi null agar New Name pada form tidak muncul
     if(oldName){
         contact = controller.getContact(oldName)
-        contact.name = null
         request = "PUT"
     }
 

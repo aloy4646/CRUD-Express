@@ -3,27 +3,38 @@
 <form method="POST" action="/contact/form">
     <button type="submit">Add Contact</button>
 </form>
+<br>
 
 <% if (contacts.length < 1) { %>
     <p>Contact data is Empty</p>
 <% } else { %>
+    <% var counter = 1 %>
+    <table class="table table-striped" style="text-align: center;">
+        <tr>
+            <th>#</th>
+            <th>Nama</th>
+            <th>Mobile</th>
+            <th>Action</th>
+        </tr>
     <% contacts.forEach(contact => { %>
-        <div name="contact">
-            <ul>
-                <li>Nama: <%= contact.name %></li>
-                <li>Mobile: <%= contact.mobile %></li>
-            </ul>
-            <form method="GET" action="/contact/<%= contact.name %>">
-                <button type="submit">Detail</button>
-            </form>
+            <tr>
+                    <td><%= counter++ %></td>
+                    <td><%= contact.name %></td>
+                    <td><%= contact.mobile %></td>
+                    <td colspan="2">
+                        <form method="GET" action="/contact/<%= contact.name %>" style="display: inline;">
+                            <button type="submit">Detail</button>
+                        </form>
 
-            <form method="POST" action="/contact/form?oldName=<%= contact.name %>">
-                <button type="submit">Edit</button>
-            </form>
+                        <form method="POST" action="/contact/form?oldName=<%= contact.name %>" style="display: inline;">
+                            <button type="submit">Edit</button>
+                        </form>
 
-            <form method="POST" action="/contact/<%= contact.name %>?_method=DELETE">
-                <button type="submit">Delete</button>
-            </form>            
-        </div>
+                        <form method="POST" action="/contact/<%= contact.name %>?_method=DELETE" style="display: inline;">
+                            <button type="submit">Delete</button>
+                        </form> 
+                    </td>
+                </tr>
     <% }) %>
+    </table>      
 <% } %>

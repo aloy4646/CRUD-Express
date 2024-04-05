@@ -1,4 +1,4 @@
-# GeeksFarm Bootcamp 4 April 2024
+# GeeksFarm Bootcamp 3-5 April 2024
 Project membuat CRUD (Create, Read, Update, Delete) contact menggunakan Express
 
 Terdapat 7 fitur pada project ini

@@ -23,15 +23,15 @@
                     <td><%= contact.mobile %></td>
                     <td colspan="2">
                         <form method="GET" action="/contact/<%= contact.name %>" style="display: inline;">
-                            <button type="submit">Detail</button>
+                            <button type="submit" class="btn btn-info">Detail</button>
                         </form>
 
                         <form method="POST" action="/contact/form?oldName=<%= contact.name %>" style="display: inline;">
-                            <button type="submit">Edit</button>
+                            <button type="submit" class="btn btn-light">Edit</button>
                         </form>
 
                         <form method="POST" action="/contact/<%= contact.name %>?_method=DELETE" style="display: inline;">
-                            <button type="submit">Delete</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
                         </form> 
                     </td>
                 </tr>

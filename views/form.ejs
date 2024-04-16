@@ -13,16 +13,9 @@
 
 <form action="<%= request === "PUT" ? "/contact?_method=PUT" : "/contact" %>" method="POST">
 
-    <% if (request === "PUT") { %>
-        <!-- saat method dari request adalah PUT maka form nama terisi dengan nama lama -->
-        <!-- saat terjadi error saat pengisian form, nama yang dicantumkan saat error akan kembali dimunculkan -->
-        <label for="name">Name</label><br>
-        <input type="text" id="name" name="name" value="<%= contact.name %>" required><br><br>
-    <% } else { %>
-        <label for="name">Name</label><br>
-        <!-- value kosong saat request POST pertama dilakukan -->
-        <input type="text" id="name" name="name" value="<%= contact && contact.name ? contact.name : "" %>" required><br><br>
-    <% } %>
+    <label for="name">Name</label><br>
+    <!-- value kosong saat request POST pertama dilakukan -->
+    <input type="text" id="name" name="name" value="<%= contact ? contact.name : "" %>" required><br><br>
     
     <label for="email">Email</label><br>
     <input type="email" id="email" name="email" value="<%= contact && contact.email ? contact.email : "" %>"><br><br>
